@@ -3,60 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cadastro de Profissionais | Carnaval de Uruguaiana</title>
+<title>Cadastro de Profissionais | Carnaval de Uruguaiana | Prefeitura Municipal de Uruguaiana/RS</title>
 <style>
-:root{--roxo:#4a148c;--roxo2:#7b1fa2;--ouro:#ffc107;--verde:#00a859;--bg:#faf7ff;--tx:#1d1530;--card:#fff;--bd:#d9cdea;--erro:#c62828}
-@media (prefers-color-scheme:dark){:root{--bg:#150d24;--tx:#f1eaff;--card:#211634;--bd:#3d2c5c}}
+:root{--azul:#0b4a9e;--azul2:#083a7d;--azul3:#e8f0fb;--bd:#c9d6ea;--bg:#f2f5fa;--tx:#1f2937;--card:#fff;--erro:#c62828;--ver:#1b8a3a}
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
-header{background:linear-gradient(135deg,var(--roxo),var(--roxo2) 60%,var(--verde));color:#fff;text-align:center;padding:40px 20px 56px}
-header h1{margin:0 0 6px;font-size:clamp(1.6rem,5vw,2.4rem)}
-header p{margin:0;opacity:.95}
-.faixa{height:6px;background:linear-gradient(90deg,var(--ouro),var(--verde),var(--roxo2),var(--ouro))}
-main{max-width:640px;margin:-32px auto 40px;padding:0 16px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:24px;box-shadow:0 8px 28px rgba(74,20,140,.15)}
-label{display:block;font-weight:600;margin:14px 0 4px;font-size:.92rem}
-input,select,textarea{width:100%;padding:12px;border:1.5px solid var(--bd);border-radius:10px;font:inherit;background:var(--bg);color:var(--tx)}
-input:focus,select:focus,textarea:focus{outline:3px solid rgba(123,31,162,.3);border-color:var(--roxo2)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:520px){.row{grid-template-columns:1fr}}
-.chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.88rem}
-.chk input{width:auto;margin-top:4px}
-button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:14px 20px;font-weight:700}
-.btn{width:100%;margin-top:20px;background:var(--roxo);color:#fff;font-size:1.05rem}
-.btn:hover{background:var(--roxo2)}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+.topo{background:var(--azul2);color:#fff;font-size:.8rem}
+.topo div{max-width:960px;margin:auto;padding:6px 16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.topo a{color:#fff;text-decoration:none;margin-left:12px}
+.cab{background:#fff;border-bottom:4px solid var(--azul)}
+.cab div{max-width:960px;margin:auto;padding:14px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.cab img{height:64px;width:auto}
+.cab .nome{font-weight:700;color:var(--azul);font-size:1.05rem;line-height:1.2}
+.cab .nome small{display:block;font-weight:400;color:#555;font-size:.8rem}
+.nav{background:var(--azul);color:#fff}
+.nav div{max-width:960px;margin:auto;padding:12px 16px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;font-size:.9rem}
+.mig{max-width:960px;margin:14px auto 0;padding:0 16px;font-size:.82rem;color:#556}
+.mig a{color:var(--azul);text-decoration:none}
+main{max-width:960px;margin:12px auto 40px;padding:0 16px}
+h1{color:var(--azul);font-size:1.5rem;margin:6px 0 4px}
+.sub{margin:0 0 16px;color:#445}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(11,74,158,.08)}
+.card .tit{background:var(--azul);color:#fff;padding:12px 20px;font-weight:700;text-transform:uppercase;font-size:.9rem}
+.card form,.ok{padding:20px}
+label{display:block;font-weight:700;margin:14px 0 4px;font-size:.88rem;color:var(--azul2)}
+input,select,textarea{width:100%;padding:11px;border:1px solid #9fb3d1;border-radius:4px;font:inherit;background:#fff;color:var(--tx)}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(11,74,158,.25);border-color:var(--azul)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.85rem;font-weight:400;color:var(--tx)}
+.chk input{width:auto;margin-top:3px}
+button{font:inherit;cursor:pointer;border:0;border-radius:4px;font-weight:700}
+.btn{width:100%;margin-top:20px;padding:14px;background:var(--azul);color:#fff;text-transform:uppercase;letter-spacing:.4px}
+.btn:hover{background:var(--azul2)}
 .btn:disabled{opacity:.6;cursor:not-allowed}
-.msg{margin-top:14px;padding:12px;border-radius:10px;font-size:.92rem;display:none}
+.msg{margin-top:14px;padding:12px;border-radius:4px;font-size:.9rem;display:none}
 .msg.erro{display:block;background:#fdecea;color:var(--erro);border:1px solid #f5b5b0}
-.ok{text-align:center;display:none;padding:20px 0}
-.ok .ic{font-size:3rem}
+.ok{text-align:center;display:none;padding:36px 20px}
+.ok .ic{font-size:3rem;color:var(--ver)}
+.ok h2{color:var(--azul);margin:6px 0}
 .hp{position:absolute;left:-9999px;opacity:0}
-#load{position:fixed;inset:0;background:rgba(21,13,36,.85);display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:50;text-align:center;padding:20px}
+#load{position:fixed;inset:0;background:rgba(8,58,125,.9);display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:50;text-align:center;padding:20px}
 #load.on{display:flex}
-.spin{width:64px;height:64px;border:6px solid rgba(255,255,255,.25);border-top-color:var(--ouro);border-radius:50%;animation:g 1s linear infinite;margin-bottom:16px}
+.spin{width:64px;height:64px;border:6px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:g 1s linear infinite;margin-bottom:16px}
 @keyframes g{to{transform:rotate(360deg)}}
-footer{text-align:center;font-size:.8rem;opacity:.75;padding-bottom:30px}
-footer a{color:inherit;cursor:pointer;text-decoration:underline}
+footer{background:var(--azul);color:#fff;font-size:.85rem}
+footer .in{max-width:960px;margin:auto;padding:24px 16px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+footer img{height:80px;width:auto}
+footer a{color:#fff}
+footer .fim{background:var(--azul2);text-align:center;padding:10px;font-size:.78rem}
 #adm{display:none;position:fixed;inset:0;background:var(--bg);z-index:40;overflow:auto;padding:20px}
-.adm-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.adm-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;color:var(--azul2)}
 .adm-top input{flex:1;min-width:180px}
-.adm-top button{background:var(--verde);color:#fff;padding:11px 16px}
-.adm-top .sec{background:#6b5a85}
-.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:10px}
-table{border-collapse:collapse;width:100%;font-size:.85rem;background:var(--card)}
+.adm-top button{background:var(--azul);color:#fff;padding:11px 16px}
+.adm-top .sec{background:#6b7a90}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-size:.85rem;background:#fff}
 th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}
-th{background:var(--roxo);color:#fff;position:sticky;top:0}
+th{background:var(--azul);color:#fff;position:sticky;top:0}
 </style>
 </head>
 <body>
-<div class="faixa"></div>
-<header>
-  <h1>🎭 Carnaval de Uruguaiana</h1>
-  <p>Cadastro de Repórteres, Vendedores, Influenciadores e demais profissionais</p>
-</header>
+<div class="topo"><div>
+  <span>Prefeitura Municipal de Uruguaiana/RS</span>
+  <span><a href="https://www.facebook.com/prefeiturauruguaianaoficial" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/prefeiturauruguaiana/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCrIuvrlCpuvWIKknNPnthuw" target="_blank" rel="noopener">YouTube</a></span>
+</div></div>
+<header class="cab"><div>
+  <a href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener"><img src="https://www.uruguaiana.rs.gov.br/img/logo_mobile.png" alt="Prefeitura Municipal de Uruguaiana/RS"></a>
+  <div class="nome">Prefeitura Municipal de Uruguaiana/RS<small>Carnaval de Uruguaiana</small></div>
+</div></header>
+<nav class="nav"><div>Carnaval de Uruguaiana · Cadastro de Profissionais</div></nav>
+<div class="mig"><a href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener">Portal</a> › Carnaval › Cadastro de Profissionais</div>
 
 <main>
+  <h1>Cadastro de Profissionais</h1>
+  <p class="sub">Repórteres, vendedores, influenciadores e demais profissionais que irão trabalhar no Carnaval de Uruguaiana.</p>
   <div class="card">
+    <div class="tit">Informe seus dados</div>
     <form id="f" novalidate autocomplete="on">
       <label for="nome">Nome completo *</label>
       <input id="nome" name="name" maxlength="120" required autocomplete="name">
@@ -97,14 +120,25 @@ th{background:var(--roxo);color:#fff;position:sticky;top:0}
     </form>
 
     <div class="ok" id="ok">
-      <div class="ic">✅</div>
+      <div class="ic">✔</div>
       <h2>Cadastro realizado!</h2>
       <p>Seus dados foram salvos com sucesso. Entraremos em contato em breve.</p>
     </div>
   </div>
 </main>
 
-<footer>© Carnaval de Uruguaiana · <a id="abrirAdm">Área restrita</a></footer>
+<footer>
+  <div class="in">
+    <a href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener"><img src="https://www.uruguaiana.rs.gov.br/img/brasao-rodape.png" alt="Brasão de Uruguaiana"></a>
+    <div>
+      <strong>Prefeitura Municipal de Uruguaiana/RS</strong><br>
+      Palácio Rio Branco - Rua 15 de Novembro, 1882 - Bairro: Centro | CEP: 97501-532<br>
+      Telefone: <a href="tel:+555539113018">(55) 3911-3018</a> · Das 08h às 14h<br>
+      E-mail: <a href="mailto:atendimento@uruguaiana.rs.gov.br">atendimento@uruguaiana.rs.gov.br</a>
+    </div>
+  </div>
+  <div class="fim">© Prefeitura Municipal de Uruguaiana/RS · <a id="abrirAdm" href="#" style="opacity:.8">Área restrita</a></div>
+</footer>
 
 <div id="load" role="status" aria-live="polite">
   <div class="spin"></div>
@@ -124,7 +158,6 @@ th{background:var(--roxo);color:#fff;position:sticky;top:0}
 </div>
 
 <script>
-// ▼▼ COLE AQUI a URL do App da Web gerada pelo Apps Script ▼▼
 const API_URL = 'https://script.google.com/macros/s/AKfycbz-Wskk2up2EFUWNsnrhM59WEjbjLYPYIyECQMn_BnHHxFPkKWvnHxYADIj6tyX9YV-/exec';
 
 const $ = id => document.getElementById(id);
@@ -178,9 +211,7 @@ $('f').addEventListener('submit', async ev => {
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return erro('Informe um e-mail válido.');
   if(d.cidade.length<2) return erro('Informe sua cidade.');
   if(!d.lgpd) return erro('É necessário aceitar o termo de uso dos dados.');
-  if(API_URL.startsWith('COLE_')) return erro('Site ainda não configurado (falta a URL do Apps Script).');
 
-  // mesmo ID em reenvios: o servidor não duplica o cadastro
   submissionId = submissionId || novoId();
   d.id = submissionId;
 
@@ -197,7 +228,8 @@ $('f').addEventListener('submit', async ev => {
 });
 
 /* ---------- Área restrita (senha validada no servidor) ---------- */
-$('abrirAdm').addEventListener('click', async () => {
+$('abrirAdm').addEventListener('click', async ev => {
+  ev.preventDefault();
   const senha = prompt('Senha da administradora:');
   if(!senha) return;
   $('load').classList.add('on');
