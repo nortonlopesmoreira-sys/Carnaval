@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadastro de Profissionais | Carnaval de Uruguaiana</title>
+<style>
+:root{--roxo:#4a148c;--roxo2:#7b1fa2;--ouro:#ffc107;--verde:#00a859;--bg:#faf7ff;--tx:#1d1530;--card:#fff;--bd:#d9cdea;--erro:#c62828}
+@media (prefers-color-scheme:dark){:root{--bg:#150d24;--tx:#f1eaff;--card:#211634;--bd:#3d2c5c}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
+header{background:linear-gradient(135deg,var(--roxo),var(--roxo2) 60%,var(--verde));color:#fff;text-align:center;padding:40px 20px 56px}
+header h1{margin:0 0 6px;font-size:clamp(1.6rem,5vw,2.4rem)}
+header p{margin:0;opacity:.95}
+.faixa{height:6px;background:linear-gradient(90deg,var(--ouro),var(--verde),var(--roxo2),var(--ouro))}
+main{max-width:640px;margin:-32px auto 40px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:24px;box-shadow:0 8px 28px rgba(74,20,140,.15)}
+label{display:block;font-weight:600;margin:14px 0 4px;font-size:.92rem}
+input,select,textarea{width:100%;padding:12px;border:1.5px solid var(--bd);border-radius:10px;font:inherit;background:var(--bg);color:var(--tx)}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(123,31,162,.3);border-color:var(--roxo2)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:.88rem}
+.chk input{width:auto;margin-top:4px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:14px 20px;font-weight:700}
+.btn{width:100%;margin-top:20px;background:var(--roxo);color:#fff;font-size:1.05rem}
+.btn:hover{background:var(--roxo2)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.msg{margin-top:14px;padding:12px;border-radius:10px;font-size:.92rem;display:none}
+.msg.erro{display:block;background:#fdecea;color:var(--erro);border:1px solid #f5b5b0}
+.ok{text-align:center;display:none;padding:20px 0}
+.ok .ic{font-size:3rem}
+.hp{position:absolute;left:-9999px;opacity:0}
+#load{position:fixed;inset:0;background:rgba(21,13,36,.85);display:none;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:50;text-align:center;padding:20px}
+#load.on{display:flex}
+.spin{width:64px;height:64px;border:6px solid rgba(255,255,255,.25);border-top-color:var(--ouro);border-radius:50%;animation:g 1s linear infinite;margin-bottom:16px}
+@keyframes g{to{transform:rotate(360deg)}}
+footer{text-align:center;font-size:.8rem;opacity:.75;padding-bottom:30px}
+footer a{color:inherit;cursor:pointer;text-decoration:underline}
+#adm{display:none;position:fixed;inset:0;background:var(--bg);z-index:40;overflow:auto;padding:20px}
+.adm-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.adm-top input{flex:1;min-width:180px}
+.adm-top button{background:var(--verde);color:#fff;padding:11px 16px}
+.adm-top .sec{background:#6b5a85}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.85rem;background:var(--card)}
+th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap}
+th{background:var(--roxo);color:#fff;position:sticky;top:0}
+</style>
+</head>
+<body>
+<div class="faixa"></div>
+<header>
+  <h1>🎭 Carnaval de Uruguaiana</h1>
+  <p>Cadastro de Repórteres, Vendedores, Influenciadores e demais profissionais</p>
+</header>
+
+<main>
+  <div class="card">
+    <form id="f" novalidate autocomplete="on">
+      <label for="nome">Nome completo *</label>
+      <input id="nome" name="name" maxlength="120" required autocomplete="name">
+
+      <label for="funcao">Função *</label>
+      <select id="funcao" required>
+        <option value="">Selecione...</option>
+        <option>Repórter</option><option>Vendedor(a)</option><option>Influenciador(a)</option><option>Outro</option>
+      </select>
+
+      <div class="row">
+        <div><label for="wpp">WhatsApp (com DDD) *</label>
+          <input id="wpp" type="tel" inputmode="numeric" placeholder="(55) 99999-9999" maxlength="16" required autocomplete="tel"></div>
+        <div><label for="email">E-mail *</label>
+          <input id="email" type="email" maxlength="120" required autocomplete="email"></div>
+      </div>
+
+      <div class="row">
+        <div><label for="cidade">Cidade/UF *</label>
+          <input id="cidade" maxlength="80" placeholder="Uruguaiana/RS" required></div>
+        <div><label for="insta">Instagram</label>
+          <input id="insta" maxlength="60" placeholder="@seuperfil"></div>
+      </div>
+
+      <label for="emp">Empresa / Veículo</label>
+      <input id="emp" maxlength="100">
+
+      <label for="obs">Observações</label>
+      <textarea id="obs" rows="3" maxlength="500"></textarea>
+
+      <input class="hp" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <label class="chk"><input type="checkbox" id="lgpd">
+        <span>Autorizo o uso dos meus dados pela organização do Carnaval de Uruguaiana exclusivamente para fins de credenciamento e contato, conforme a LGPD. *</span></label>
+
+      <button class="btn" id="enviar" type="submit">Enviar cadastro</button>
+      <div class="msg" id="msg" role="alert"></div>
+    </form>
+
+    <div class="ok" id="ok">
+      <div class="ic">✅</div>
+      <h2>Cadastro realizado!</h2>
+      <p>Seus dados foram salvos com sucesso. Entraremos em contato em breve.</p>
+    </div>
+  </div>
+</main>
+
+<footer>© Carnaval de Uruguaiana · <a id="abrirAdm">Área restrita</a></footer>
+
+<div id="load" role="status" aria-live="polite">
+  <div class="spin"></div>
+  <strong>Salvando seu cadastro...</strong>
+  <span>Não feche nem atualize esta página.</span>
+</div>
+
+<div id="adm">
+  <div class="adm-top">
+    <strong>Área restrita – Daiane Mossi</strong>
+    <input id="busca" placeholder="Buscar por nome, função, e-mail...">
+    <button id="csv">Baixar CSV</button>
+    <button class="sec" id="sair">Sair</button>
+  </div>
+  <div class="tw"><table id="tb"></table></div>
+  <p id="tot"></p>
+</div>
+
+<script>
+// ▼▼ COLE AQUI a URL do App da Web gerada pelo Apps Script ▼▼
+const API_URL = 'COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+
+const $ = id => document.getElementById(id);
+let submissionId = null, enviando = false, dadosAdm = null, cabAdm = null;
+
+function novoId(){
+  const a = new Uint8Array(12); crypto.getRandomValues(a);
+  return Array.from(a, b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function chamar(payload){
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 30000);
+  try{
+    const r = await fetch(API_URL, {
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(payload),
+      signal: ctrl.signal
+    });
+    if(!r.ok) throw new Error('http');
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+
+function erro(t){ const m=$('msg'); m.textContent=t; m.className='msg erro'; }
+
+$('wpp').addEventListener('input', e => {
+  let v = e.target.value.replace(/\D/g,'').slice(0,11);
+  if(v.length>6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+  else if(v.length>2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+  e.target.value = v;
+});
+
+$('f').addEventListener('submit', async ev => {
+  ev.preventDefault();
+  if(enviando) return;
+  $('msg').className = 'msg';
+
+  const d = {
+    action:'register',
+    nome:$('nome').value.trim(), funcao:$('funcao').value,
+    whatsapp:$('wpp').value, email:$('email').value.trim(),
+    cidade:$('cidade').value.trim(), instagram:$('insta').value.trim(),
+    empresa:$('emp').value.trim(), obs:$('obs').value.trim(),
+    lgpd:$('lgpd').checked, website:$('website').value
+  };
+  if(d.nome.length<5 || !d.nome.includes(' ')) return erro('Informe seu nome completo.');
+  if(!d.funcao) return erro('Selecione sua função.');
+  if(d.whatsapp.replace(/\D/g,'').length<10) return erro('Informe um WhatsApp válido com DDD.');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email)) return erro('Informe um e-mail válido.');
+  if(d.cidade.length<2) return erro('Informe sua cidade.');
+  if(!d.lgpd) return erro('É necessário aceitar o termo de uso dos dados.');
+  if(API_URL.startsWith('COLE_')) return erro('Site ainda não configurado (falta a URL do Apps Script).');
+
+  // mesmo ID em reenvios: o servidor não duplica o cadastro
+  submissionId = submissionId || novoId();
+  d.id = submissionId;
+
+  enviando = true; $('enviar').disabled = true; $('load').classList.add('on');
+  try{
+    const r = await chamar(d);
+    if(r.ok){ $('f').style.display='none'; $('ok').style.display='block'; window.scrollTo(0,0); }
+    else { erro(r.error || 'Não foi possível salvar. Tente novamente.'); if(r.error && !/tente/i.test(r.error)) submissionId=null; }
+  }catch(e){
+    erro('Falha de conexão. Seus dados NÃO foram confirmados. Clique em "Enviar" novamente (não haverá duplicidade).');
+  }finally{
+    enviando = false; $('enviar').disabled = false; $('load').classList.remove('on');
+  }
+});
+
+/* ---------- Área restrita (senha validada no servidor) ---------- */
+$('abrirAdm').addEventListener('click', async () => {
+  const senha = prompt('Senha da administradora:');
+  if(!senha) return;
+  $('load').classList.add('on');
+  try{
+    const r = await chamar({action:'list', senha});
+    if(!r.ok) return alert(r.error || 'Acesso negado.');
+    cabAdm = r.headers; dadosAdm = r.rows;
+    $('adm').style.display='block'; desenhar('');
+  }catch(e){ alert('Falha de conexão.'); }
+  finally{ $('load').classList.remove('on'); }
+});
+
+function desenhar(q){
+  q = q.toLowerCase();
+  const linhas = dadosAdm.filter(l => l.join(' ').toLowerCase().includes(q));
+  const tb = $('tb'); tb.textContent = '';
+  const thead = tb.createTHead().insertRow();
+  cabAdm.forEach(h => { const th=document.createElement('th'); th.textContent=h; thead.appendChild(th); });
+  const body = tb.createTBody();
+  linhas.forEach(l => { const tr=body.insertRow(); l.forEach(c => { tr.insertCell().textContent = c; }); });
+  $('tot').textContent = linhas.length + ' cadastro(s)';
+}
+$('busca').addEventListener('input', e => desenhar(e.target.value));
+$('sair').addEventListener('click', () => { dadosAdm=null; cabAdm=null; $('tb').textContent=''; $('adm').style.display='none'; });
+$('csv').addEventListener('click', () => {
+  const esc = v => '"' + String(v).replace(/"/g,'""') + '"';
+  const csv = '\ufeff' + [cabAdm, ...dadosAdm].map(l => l.map(esc).join(';')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8'}));
+  a.download = 'cadastros-carnaval-uruguaiana.csv'; a.click();
+});
+</script>
+</body>
+</html>
