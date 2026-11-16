@@ -8,14 +8,21 @@
 :root{--azul:#0b4a9e;--azul2:#083a7d;--azul3:#e8f0fb;--bd:#c9d6ea;--bg:#f2f5fa;--tx:#1f2937;--card:#fff;--erro:#c62828;--ver:#1b8a3a}
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--tx);line-height:1.5}
-.topo{background:var(--azul2);color:#fff;font-size:.8rem}
-.topo div{max-width:960px;margin:auto;padding:6px 16px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
-.topo a{color:#fff;text-decoration:none;margin-left:12px}
-.cab{background:#fff;border-bottom:4px solid var(--azul)}
-.cab div{max-width:960px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.cab img{height:84px;width:auto;display:block}
-.cab .nome{font-weight:700;color:var(--azul);font-size:1.05rem;line-height:1.2}
-.cab .nome small{display:block;font-weight:400;color:#555;font-size:.8rem}
+.hd .band{background:#052e75;height:60px}
+.hd .w{max-width:960px;margin:auto;padding:0 16px;position:relative;height:100%}
+.soc{display:flex;gap:8px;justify-content:flex-end;align-items:center;height:60px}
+.soc a{width:40px;height:40px;background:#0b4aa0;display:flex;align-items:center;justify-content:center;border-radius:2px}
+.soc a:hover{background:#1560c4}
+.soc svg{width:16px;height:16px;fill:#fff}
+.hd .strip{background:#fff;height:96px;border-bottom:4px solid var(--azul)}
+.logo{position:absolute;left:16px;top:-60px;width:132px;height:152px;background:#0b3d8f;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.25);display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;z-index:5}
+.logo .rd{position:absolute;top:0;left:0;right:0;height:14px;background:#e53935}
+.logo img{height:104px;width:auto;display:block}
+@media(max-width:560px){.logo{width:104px;height:122px}.logo img{height:80px}.hd .strip{height:70px}}
+.ttl{position:absolute;left:170px;right:16px;top:0;height:96px;display:flex;align-items:center;color:var(--azul);font-weight:700;font-size:1.35rem;line-height:1.25}
+.ttl span{margin:0 .4em;font-weight:400}
+@media(max-width:560px){.ttl{left:132px;height:70px;font-size:1rem}}
+h1{text-align:center}.sub{text-align:center}
 .nav{background:var(--azul);color:#fff}
 .nav div{max-width:960px;margin:auto;padding:12px 16px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;font-size:.9rem}
 .mig{max-width:960px;margin:14px auto 0;padding:0 16px;font-size:.82rem;color:#556}
@@ -64,14 +71,17 @@ th{background:var(--azul);color:#fff;position:sticky;top:0}
 </style>
 </head>
 <body>
-<div class="topo"><div>
-  <span></span>
-  <span><a href="https://www.facebook.com/prefeiturauruguaianaoficial" target="_blank" rel="noopener">Facebook</a><a href="https://www.instagram.com/prefeiturauruguaiana/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UCrIuvrlCpuvWIKknNPnthuw" target="_blank" rel="noopener">YouTube</a></span>
-</div></div>
-<header class="cab"><div>
-  <a href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener"><img src="https://www.uruguaiana.rs.gov.br/img/logo_mobile.png" alt="Prefeitura Municipal de Uruguaiana/RS"></a>
-</div></header>
-<nav class="nav"><div>Carnaval de Uruguaiana · Cadastro de Profissionais</div></nav>
+<header class="hd">
+  <div class="band"><div class="w"><nav class="soc" aria-label="Redes sociais">
+    <a href="https://www.facebook.com/prefeiturauruguaianaoficial" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6.5c0-.7.2-1 1.1-1H17V2h-2.7C11.3 2 10 3.7 10 6.2V8H7.5v3.5H10V22h4V11.5h2.7L17 8z"/></svg></a>
+    <a href="https://www.instagram.com/prefeiturauruguaiana/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm5 3.5A4.5 4.5 0 1112 16.5 4.5 4.5 0 0112 7.5zm0 2A2.5 2.5 0 1014.5 12 2.5 2.5 0 0012 9.5zM17.2 5.8a1.1 1.1 0 11-1.1 1.1 1.1 1.1 0 011.1-1.1z"/></svg></a>
+    <a href="https://www.youtube.com/channel/UCrIuvrlCpuvWIKknNPnthuw" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.5 2.5 0 00-1.8-1.8C18.2 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 002.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 001.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 001.800-1.800C22 15.200 22 12 22 12s0-3.200-.4-4.800zM10 15V9l5.200 3z"/></svg></a>
+  </nav></div></div>
+  <div class="strip"><div class="w">
+    <a class="logo" href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener" aria-label="Prefeitura Municipal de Uruguaiana/RS"><span class="rd"></span><img src="https://www.uruguaiana.rs.gov.br/img/brasao-rodape.png" alt="Brasão de Uruguaiana"></a>
+    <div class="ttl">Prefeitura Municipal de Uruguaiana <span>-</span> Carnaval 2027</div>
+  </div></div>
+</header>
 <div class="mig"><a href="https://www.uruguaiana.rs.gov.br/" target="_blank" rel="noopener">Portal</a> › Carnaval › Cadastro de Profissionais</div>
 
 <main>
